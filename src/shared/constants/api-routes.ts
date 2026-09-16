@@ -1,6 +1,6 @@
 /**
  * Backend endpoint'lari bitta joyda.
- * Manba: http://10.95.3.13:8000/docs/admin (AccessControl Admin API 0.0.1)
+ * Manba: http://192.168.1.250:8000/docs/admin (AccessControl Admin API 0.0.1)
  */
 export const API_ROUTES = {
   AUTH_LOGIN: '/auth/login',
