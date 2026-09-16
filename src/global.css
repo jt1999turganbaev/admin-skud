@@ -114,6 +114,15 @@ body {
   font-weight: 500;
 }
 
+/* Placeholder qiymatdan aniq ajralib tursin: Mantine uni `gray-5` dan
+   oladi, bizning palitrada u (#5F6673) deyarli matn rangi — kiritilgan
+   qiymat bilan bir xil ko'rinardi. Ochroq rang va oddiy qalinlik. */
+.mantine-Input-input::placeholder {
+  color: var(--grey-400);
+  font-weight: 400;
+  opacity: 1;
+}
+
 /* Ochiluvchi ro'yxat elementlari ham shu qalinlikda */
 .mantine-Combobox-option {
   font-weight: 500;

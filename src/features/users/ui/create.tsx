@@ -22,7 +22,8 @@ export const UserCreate = () => {
         last_name: values.last_name,
         middle_name: values.middle_name || null,
         phone: `+998${values.phone}`,
-        password: values.password,
+        // Oddiy foydalanuvchi uchun parol yuborilmaydi.
+        ...(values.role !== 'user' ? { password: values.password } : {}),
         status: values.status,
         role: values.role,
         // Backend base64 kutadi; tanlanmagan bo'lsa yuborilmaydi.

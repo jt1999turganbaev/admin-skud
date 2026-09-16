@@ -209,13 +209,13 @@ export const TerminalFormModal = ({
       <SimpleGrid cols={2}>
         <TextInput
           label={t('terminals.ipAddress')}
-          placeholder="192.168.1.10"
+          placeholder={t('terminals.ipPlaceholder')}
           {...form.getInputProps('ip_address')}
         />
 
         <NumberInput
           label={t('terminals.port')}
-          placeholder="80"
+          placeholder={t('terminals.portPlaceholder')}
           min={1}
           max={65535}
           allowDecimal={false}
@@ -228,7 +228,7 @@ export const TerminalFormModal = ({
       <SimpleGrid cols={2}>
         <TextInput
           label={t('terminals.login')}
-          placeholder="admin"
+          placeholder={t('terminals.loginPlaceholder')}
           autoComplete="off"
           {...form.getInputProps('login')}
         />

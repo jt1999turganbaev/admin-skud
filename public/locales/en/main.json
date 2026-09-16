@@ -91,14 +91,13 @@
     "passwordMin": "Password must be at least 8 characters",
     "photo": "Photo",
     "photoDrop": "Choose a photo or drop it here",
-    "photoHint": "PNG, JPEG or WEBP · 240 KB – 5 MB",
+    "photoHint": "PNG, JPEG or WEBP · up to 200 KB",
     "photoReplace": "Replace",
     "photoZoomHint": "Click the photo to enlarge it.",
     "photoZoom": "Enlarge photo",
     "photoTypeError": "Only PNG, JPEG or WEBP images can be uploaded.",
     "photoReadError": "Could not read the photo. Choose another file.",
-    "photoMinError": "The photo must be at least 240 KB.",
-    "photoMaxError": "The photo must not exceed 5 MB."
+    "photoMaxError": "The photo must not exceed 200 KB."
   },
   "rooms": {
     "title": "Rooms",
@@ -129,7 +128,7 @@
     "out": "Exit",
     "selectRoom": "Select a room",
     "namePlaceholder": "Enter the terminal name",
-    "deviceIdPlaceholder": "TRM-0001",
+    "deviceIdPlaceholder": "For example: TRM-0001",
     "roomRequired": "Select a room",
     "nameRequired": "Enter the terminal name",
     "deviceIdRequired": "Enter the device identifier",
@@ -149,7 +148,10 @@
     "manufacturerPlaceholder": "Enter the manufacturer",
     "configuration": "Configuration",
     "configured": "Configured",
-    "notConfigured": "Not configured"
+    "notConfigured": "Not configured",
+    "ipPlaceholder": "For example: 192.168.1.10",
+    "portPlaceholder": "For example: 80",
+    "loginPlaceholder": "Enter the device login"
   },
   "tablets": {
     "title": "Tablets",
@@ -236,7 +238,7 @@
     "endsAfterStarts": "The end must be later than the start",
     "notFound": "No tasks match the filters.",
     "selectDateTime": "Pick date and time",
-    "startsInFuture": "The start must be later than the current time",
+    "startsInFuture": "The start date cannot be earlier than today",
     "endsHint": "Pick the start time first",
     "taskName": "Task name",
     "taskNamePlaceholder": "Enter the task name",

@@ -96,15 +96,17 @@ export const AssignmentForm = ({
   const { data: roomsData } = useFetchRoomsList()
 
   /**
-   * Boshlanish o'tmishda bo'lmasin. Tahrirlashda mavjud yozuv allaqachon
-   * boshlangan bo'lishi mumkin — u holda o'sha vaqt quyi chegara bo'ladi,
-   * aks holda eski biriktirishni umuman saqlab bo'lmay qolardi.
+   * Boshlanish bugundan oldin bo'lmasin — faqat kun cheklanadi, soat emas.
+   * Tahrirlashda mavjud yozuv allaqachon boshlangan bo'lishi mumkin — u
+   * holda o'sha vaqt quyi chegara bo'ladi, aks holda eski biriktirishni
+   * umuman saqlab bo'lmay qolardi.
    */
   const minStart = useMemo(() => {
-    const now = new Date()
+    const today = new Date()
+    today.setHours(0, 0, 0, 0)
     const existing = initialValues.starts_at
 
-    return existing && existing < now ? existing : now
+    return existing && existing < today ? existing : today
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialValues.starts_at])
 
@@ -120,7 +122,6 @@ export const AssignmentForm = ({
         value.trim() ? null : t('assignments.taskDescriptionRequired'),
       starts_at: (value) => {
         if (!value) return t('assignments.startsRequired')
-        // `minDate` faqat kunni cheklaydi — soatni shu yerda tekshiramiz.
         if (value < minStart) return t('assignments.startsInFuture')
         return null
       },

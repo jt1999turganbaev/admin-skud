@@ -91,14 +91,13 @@
     "passwordMin": "Пароль должен содержать не менее 8 символов",
     "photo": "Фото",
     "photoDrop": "Выберите фото или перетащите сюда",
-    "photoHint": "PNG, JPEG или WEBP · от 240 КБ до 5 МБ",
+    "photoHint": "PNG, JPEG или WEBP · до 200 КБ",
     "photoReplace": "Заменить",
     "photoZoomHint": "Нажмите на фото, чтобы увеличить.",
     "photoZoom": "Увеличить фото",
     "photoTypeError": "Загрузить можно только PNG, JPEG или WEBP.",
     "photoReadError": "Не удалось прочитать фото. Выберите другой файл.",
-    "photoMinError": "Размер фото должен быть не менее 240 КБ.",
-    "photoMaxError": "Размер фото не должен превышать 5 МБ."
+    "photoMaxError": "Размер фото не должен превышать 200 КБ."
   },
   "rooms": {
     "title": "Помещения",
@@ -129,7 +128,7 @@
     "out": "Выход",
     "selectRoom": "Выберите комнату",
     "namePlaceholder": "Введите название терминала",
-    "deviceIdPlaceholder": "TRM-0001",
+    "deviceIdPlaceholder": "Например: TRM-0001",
     "roomRequired": "Выберите комнату",
     "nameRequired": "Укажите название терминала",
     "deviceIdRequired": "Укажите идентификатор устройства",
@@ -149,7 +148,10 @@
     "manufacturerPlaceholder": "Укажите производителя",
     "configuration": "Настройка",
     "configured": "Настроен",
-    "notConfigured": "Не настроен"
+    "notConfigured": "Не настроен",
+    "ipPlaceholder": "Например: 192.168.1.10",
+    "portPlaceholder": "Например: 80",
+    "loginPlaceholder": "Введите логин устройства"
   },
   "tablets": {
     "title": "Планшеты",
@@ -236,7 +238,7 @@
     "endsAfterStarts": "Окончание должно быть позже начала",
     "notFound": "Задачи по заданным фильтрам не найдены.",
     "selectDateTime": "Выберите дату и время",
-    "startsInFuture": "Начало должно быть позже текущего времени",
+    "startsInFuture": "Дата начала не может быть раньше сегодняшнего дня",
     "endsHint": "Сначала выберите время начала",
     "taskName": "Название задачи",
     "taskNamePlaceholder": "Введите название задачи",

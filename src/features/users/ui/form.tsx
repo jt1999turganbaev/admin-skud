@@ -98,8 +98,11 @@ export const UserForm = ({
       first_name: isNotEmpty(t('users.firstNameRequired')),
       last_name: isNotEmpty(t('users.lastNameRequired')),
       phone: hasLength({ min: 9 }, t('auth.phoneRequired')),
-      password: (value) =>
-        isEdit || value.length >= 8 ? null : t('users.passwordMin'),
+      // Oddiy foydalanuvchi tizimga kirmaydi — parol so'ralmaydi.
+      password: (value, values) =>
+        isEdit || values.role === 'user' || value.length >= 8
+          ? null
+          : t('users.passwordMin'),
     },
   })
 
@@ -203,23 +206,25 @@ export const UserForm = ({
               />
             </Grid.Col>
 
-            <Grid.Col span={{ base: 12, sm: 6, lg: 4 }}>
-              <PasswordInput
-                label={t('users.password')}
-                placeholder={
-                  isEdit
-                    ? t('users.passwordKeep')
-                    : t('users.passwordPlaceholder')
-                }
-                withAsterisk={!isEdit}
-                {...form.getInputProps('password')}
-              />
-              {isEdit && (
-                <Text size="xs" c="dimmed" mt={6}>
-                  {t('users.passwordHint')}
-                </Text>
-              )}
-            </Grid.Col>
+            {form.values.role !== 'user' && (
+              <Grid.Col span={{ base: 12, sm: 6, lg: 4 }}>
+                <PasswordInput
+                  label={t('users.password')}
+                  placeholder={
+                    isEdit
+                      ? t('users.passwordKeep')
+                      : t('users.passwordPlaceholder')
+                  }
+                  withAsterisk={!isEdit}
+                  {...form.getInputProps('password')}
+                />
+                {isEdit && (
+                  <Text size="xs" c="dimmed" mt={6}>
+                    {t('users.passwordHint')}
+                  </Text>
+                )}
+              </Grid.Col>
+            )}
           </Grid>
         </Card>
 

@@ -39,7 +39,8 @@ export interface UserCreateBody {
   last_name: string
   middle_name?: string | null
   phone: string
-  password: string
+  /** Faqat `user` bo'lmagan rollar uchun majburiy. */
+  password?: string
   photo?: string | null
   status?: UserStatus
   role?: UserRole

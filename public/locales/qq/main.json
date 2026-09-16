@@ -91,14 +91,13 @@
     "passwordMin": "Parol keminde 8 belgiden ibarat bolsın",
     "photo": "Súwret",
     "photoDrop": "Súwretti tańlań yamasa usı jerge taslań",
-    "photoHint": "PNG, JPEG yamasa WEBP · 240 KB – 5 MB",
+    "photoHint": "PNG, JPEG yamasa WEBP · 200 KB-qa shekem",
     "photoReplace": "Almastırıw",
     "photoZoomHint": "Úlkeytip kóriw ushın súwret ústine basıń.",
     "photoZoom": "Súwretti úlkeytiw",
     "photoTypeError": "Tek PNG, JPEG yamasa WEBP formatındaǵı súwretlerdi júklewge boladı.",
     "photoReadError": "Súwretti oqıp bolmadı. Basqa fayldı tańlań.",
-    "photoMinError": "Súwret kólemi keminde 240 KB bolıwı kerek.",
-    "photoMaxError": "Súwret kólemi 5 MB-tan aspawı kerek."
+    "photoMaxError": "Súwret kólemi 200 KB-tan aspawı kerek."
   },
   "rooms": {
     "title": "Xanalar",
@@ -129,7 +128,7 @@
     "out": "Shıǵıw",
     "selectRoom": "Xananı tańlań",
     "namePlaceholder": "Terminal atın kirgiziń",
-    "deviceIdPlaceholder": "TRM-0001",
+    "deviceIdPlaceholder": "Mısalı: TRM-0001",
     "roomRequired": "Xananı tańlań",
     "nameRequired": "Terminal atın kirgiziń",
     "deviceIdRequired": "Qurılma identifikatorın kirgiziń",
@@ -149,7 +148,10 @@
     "manufacturerPlaceholder": "Islep shıǵarıwshını kirgiziń",
     "configuration": "Sazlanǵanlıq",
     "configured": "Sazlanǵan",
-    "notConfigured": "Sazlanbaǵan"
+    "notConfigured": "Sazlanbaǵan",
+    "ipPlaceholder": "Mısalı: 192.168.1.10",
+    "portPlaceholder": "Mısalı: 80",
+    "loginPlaceholder": "Qurılma loginin kirgiziń"
   },
   "tablets": {
     "title": "Planshetler",
@@ -236,7 +238,7 @@
     "endsAfterStarts": "Tawısılıw waqtı baslanıw waqtınan keyin bolsın",
     "notFound": "Filtrlerge sáykes wazıypa tabılmadı.",
     "selectDateTime": "Sáne hám waqıttı tańlań",
-    "startsInFuture": "Baslanıw waqtı házirgiden keyin bolsın",
+    "startsInFuture": "Baslanıw sánesi búginnen burın bolmasın",
     "endsHint": "Dáslep baslanıw waqtın tańlań",
     "taskName": "Wazıypa atı",
     "taskNamePlaceholder": "Wazıypa atın kirgiziń",

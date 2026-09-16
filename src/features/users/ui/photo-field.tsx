@@ -21,14 +21,10 @@ import styles from './photo-field.module.css'
  * Backend `photo` ni base64 sifatida kutadi (`AdminUserCreateRequest`):
  * ixtiyoriy `data:image/...;base64,` prefiksi bilan, png/jpeg/webp.
  *
- * DIQQAT: backend `maxLength` = 2 800 000 belgi, ya'ni ~2 MB rasm. Bu
- * yerdagi 5 MB chegara buyurtmaga ko'ra qo'yilgan — 2 MB dan katta rasm
- * yuborilsa, backend 422 bilan rad etadi (limit o'sha tomonda ham
- * oshirilishi kerak).
+ * Rasm hajmi 200 KB dan oshmasligi kerak.
  */
 const ACCEPTED = ['image/png', 'image/jpeg', 'image/webp']
-const MIN_BYTES = 240 * 1024
-const MAX_BYTES = 5 * 1024 * 1024
+const MAX_BYTES = 200 * 1024
 
 const toDataUrl = (file: File) =>
   new Promise<string>((resolve, reject) => {
@@ -79,11 +75,6 @@ export const PhotoField = ({
       return
     }
 
-    if (file.size < MIN_BYTES) {
-      onError?.(t('users.photoMinError'))
-      return
-    }
-
     if (file.size > MAX_BYTES) {
       onError?.(t('users.photoMaxError'))
       return
@@ -92,10 +83,7 @@ export const PhotoField = ({
     setSource(URL.createObjectURL(file))
   }
 
-  /**
-   * Kesilgan rasm. Hajm faqat yuqori chegara bo'yicha tekshiriladi:
-   * kesishdan keyin rasm kichrayadi, quyi chegara esa asl faylga qo'yilgan.
-   */
+  /** Kesilgan rasm hajmi ham yuqori chegara bo'yicha tekshiriladi. */
   const handleCrop = async (file: File) => {
     closeCropper()
 

@@ -91,14 +91,13 @@
     "passwordMin": "Parol kamida 8 belgidan iborat bo’lsin",
     "photo": "Rasm",
     "photoDrop": "Rasm tanlang yoki shu yerga tashlang",
-    "photoHint": "PNG, JPEG yoki WEBP · 240 KB – 5 MB",
+    "photoHint": "PNG, JPEG yoki WEBP · 200 KB gacha",
     "photoReplace": "Almashtirish",
     "photoZoomHint": "Kattalashtirib ko’rish uchun rasm ustiga bosing.",
     "photoZoom": "Rasmni kattalashtirish",
     "photoTypeError": "Faqat PNG, JPEG yoki WEBP rasm yuklash mumkin.",
     "photoReadError": "Rasmni o’qib bo’lmadi. Boshqa faylni tanlang.",
-    "photoMinError": "Rasm hajmi kamida 240 KB bo’lishi kerak.",
-    "photoMaxError": "Rasm hajmi 5 MB dan oshmasligi kerak."
+    "photoMaxError": "Rasm hajmi 200 KB dan oshmasligi kerak."
   },
   "rooms": {
     "title": "Xonalar",
@@ -129,7 +128,7 @@
     "out": "Chiqish",
     "selectRoom": "Xonani tanlang",
     "namePlaceholder": "Terminal nomini kiriting",
-    "deviceIdPlaceholder": "TRM-0001",
+    "deviceIdPlaceholder": "Masalan: TRM-0001",
     "roomRequired": "Xonani tanlang",
     "nameRequired": "Terminal nomini kiriting",
     "deviceIdRequired": "Qurilma identifikatorini kiriting",
@@ -149,7 +148,10 @@
     "manufacturerPlaceholder": "Ishlab chiqaruvchini kiriting",
     "configuration": "Sozlanganlik",
     "configured": "Sozlangan",
-    "notConfigured": "Sozlanmagan"
+    "notConfigured": "Sozlanmagan",
+    "ipPlaceholder": "Masalan: 192.168.1.10",
+    "portPlaceholder": "Masalan: 80",
+    "loginPlaceholder": "Qurilma loginini kiriting"
   },
   "tablets": {
     "title": "Planshetlar",
@@ -236,7 +238,7 @@
     "endsAfterStarts": "Tugash vaqti boshlanishdan keyin bo’lsin",
     "notFound": "Filtrlarga mos vazifa topilmadi.",
     "selectDateTime": "Sana va vaqtni tanlang",
-    "startsInFuture": "Boshlanish vaqti hozirgidan keyin bo’lsin",
+    "startsInFuture": "Boshlanish sanasi bugundan oldin bo’lmasin",
     "endsHint": "Avval boshlanish vaqtini tanlang",
     "taskName": "Vazifa nomi",
     "taskNamePlaceholder": "Vazifa nomini kiriting",
