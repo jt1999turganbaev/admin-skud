@@ -21,6 +21,7 @@ import {
   Rooms,
   Tablets,
   Terminals,
+  TerminalsShow,
   Users,
   UsersCreate,
   UsersEdit,
@@ -56,6 +57,7 @@ export const routes: RouteObject[] = [
               { path: ROUTES.USERS_EDIT, element: <UsersEdit /> },
               { path: ROUTES.ROOMS, element: <Rooms /> },
               { path: ROUTES.TERMINALS, element: <Terminals /> },
+              { path: ROUTES.TERMINALS_SHOW, element: <TerminalsShow /> },
               { path: ROUTES.TABLETS, element: <Tablets /> },
               { path: ROUTES.PROFILE, element: <Profile /> },
               // Backendda endpoint bor, sahifasi hali placeholder

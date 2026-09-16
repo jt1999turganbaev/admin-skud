@@ -11,6 +11,7 @@ import {
 } from '@mantine/core'
 import { IconPlus, IconSearch } from '@tabler/icons-react'
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 
 import { useFetchRoomsList } from '@/features/rooms/queries/rooms-queries'
 import { getRoomLabel } from '@/features/rooms/types'
@@ -26,6 +27,7 @@ import {
   DIRECTION_TONE,
   type Terminal,
 } from '@/features/terminals/types'
+import { ROUTES, buildRoute } from '@/shared/constants/routes'
 import { useDebounce, useDeleteConfirm, useFilterParams } from '@/shared/hooks'
 import {
   Badge,
@@ -45,6 +47,7 @@ export const TerminalsList = () => {
   const { params, setFilter, setPage, setPerPage, toggleSort } =
     useFilterParams()
   const { t } = useTranslation()
+  const navigate = useNavigate()
   const [search, setSearch] = useState('')
   const debouncedSearch = useDebounce(search)
 
@@ -66,6 +69,9 @@ export const TerminalsList = () => {
     setEditing(null)
     setModalOpened(true)
   }
+
+  const openView = (terminal: Terminal) =>
+    navigate(buildRoute(ROUTES.TERMINALS_SHOW, { id: terminal.id }))
 
   const openEdit = (terminal: Terminal) => {
     setEditing(terminal)
@@ -182,7 +188,11 @@ export const TerminalsList = () => {
               />
 
               {terminals.map((terminal, index) => (
-                <Table.Tr key={terminal.id}>
+                <Table.Tr
+                  key={terminal.id}
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => openView(terminal)}
+                >
                   <Table.Td>
                     <Text size="sm" c="dimmed">
                       {(meta?.from ?? 1) + index}
@@ -225,6 +235,7 @@ export const TerminalsList = () => {
                   </Table.Td>
                   <Table.Td ta="right">
                     <RowActions
+                      onView={() => openView(terminal)}
                       onEdit={() => openEdit(terminal)}
                       onDelete={() =>
                         confirmDelete({

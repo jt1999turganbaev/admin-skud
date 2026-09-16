@@ -1,5 +1,12 @@
 import { useEffect } from 'react'
-import { Select, TextInput } from '@mantine/core'
+import {
+  Divider,
+  NumberInput,
+  PasswordInput,
+  Select,
+  SimpleGrid,
+  TextInput,
+} from '@mantine/core'
 import { isNotEmpty, useForm } from '@mantine/form'
 import { useTranslation } from 'react-i18next'
 
@@ -35,6 +42,11 @@ interface TerminalFormValues {
   direction: TerminalDirection
   device_identifier: string
   status: DeviceStatus
+  ip_address: string
+  port: number | string
+  login: string
+  password: string
+  manufacturer: string
 }
 
 const EMPTY: TerminalFormValues = {
@@ -43,7 +55,15 @@ const EMPTY: TerminalFormValues = {
   direction: 'in',
   device_identifier: '',
   status: 'active',
+  ip_address: '',
+  port: '',
+  login: '',
+  password: '',
+  manufacturer: '',
 }
+
+/** Bo'sh satr backendga `null` bo'lib ketadi — maydonlar nullable. */
+const orNull = (value: string) => value.trim() || null
 
 export const TerminalFormModal = ({
   opened,
@@ -77,6 +97,12 @@ export const TerminalFormModal = ({
             direction: terminal.direction,
             device_identifier: terminal.device_identifier,
             status: terminal.status,
+            ip_address: terminal.ip_address ?? '',
+            port: terminal.port ?? '',
+            login: terminal.login ?? '',
+            // Parol javobda qaytmaydi — bo'sh qolsa, eskisi saqlanadi.
+            password: '',
+            manufacturer: terminal.manufacturer ?? '',
           }
         : EMPTY,
     )
@@ -88,7 +114,23 @@ export const TerminalFormModal = ({
     const onSuccess = () => onClose()
     // 422 — maydon xatolari formaning o'zida ko'rsatiladi.
     const onError = (error: HTTPError) => form.setErrors(toFormErrors(error))
-    const body = { ...values, room_id: Number(values.room_id) }
+    const body = {
+      room_id: Number(values.room_id),
+      name: values.name,
+      direction: values.direction,
+      device_identifier: values.device_identifier,
+      status: values.status,
+      ip_address: orNull(values.ip_address),
+      port: values.port === '' ? null : Number(values.port),
+      login: orNull(values.login),
+      manufacturer: orNull(values.manufacturer),
+      // Tahrirlashda bo'sh parol yuborilmaydi — aks holda o'chib ketardi.
+      ...(values.password
+        ? { password: values.password }
+        : isEdit
+          ? {}
+          : { password: null }),
+    }
 
     if (terminal)
       update.mutate({ id: terminal.id, body }, { onSuccess, onError })
@@ -100,6 +142,7 @@ export const TerminalFormModal = ({
       opened={opened}
       onClose={onClose}
       title={isEdit ? t('terminals.edit') : t('terminals.add')}
+      size="lg"
       isSubmitting={create.isPending || update.isPending}
       onSubmit={() => form.onSubmit(handleSubmit)()}
     >
@@ -122,19 +165,37 @@ export const TerminalFormModal = ({
         {...form.getInputProps('name')}
       />
 
-      <Select
-        label={t('terminals.direction')}
-        data={DIRECTIONS.map((value) => ({
-          value,
-          label: t(DIRECTION_KEY[value]),
-        }))}
-        allowDeselect={false}
-        withAsterisk
-        {...form.getInputProps('direction')}
-        onChange={(value) =>
-          form.setFieldValue('direction', (value as TerminalDirection) ?? 'in')
-        }
-      />
+      <SimpleGrid cols={2}>
+        <Select
+          label={t('terminals.direction')}
+          data={DIRECTIONS.map((value) => ({
+            value,
+            label: t(DIRECTION_KEY[value]),
+          }))}
+          allowDeselect={false}
+          withAsterisk
+          {...form.getInputProps('direction')}
+          onChange={(value) =>
+            form.setFieldValue(
+              'direction',
+              (value as TerminalDirection) ?? 'in',
+            )
+          }
+        />
+
+        <Select
+          label={t('common.status')}
+          data={DEVICE_STATUSES.map((value) => ({
+            value,
+            label: t(DEVICE_STATUS_KEY[value]),
+          }))}
+          allowDeselect={false}
+          {...form.getInputProps('status')}
+          onChange={(value) =>
+            form.setFieldValue('status', (value as DeviceStatus) ?? 'active')
+          }
+        />
+      </SimpleGrid>
 
       <TextInput
         label={t('terminals.deviceId')}
@@ -143,17 +204,51 @@ export const TerminalFormModal = ({
         {...form.getInputProps('device_identifier')}
       />
 
-      <Select
-        label={t('common.status')}
-        data={DEVICE_STATUSES.map((value) => ({
-          value,
-          label: t(DEVICE_STATUS_KEY[value]),
-        }))}
-        allowDeselect={false}
-        {...form.getInputProps('status')}
-        onChange={(value) =>
-          form.setFieldValue('status', (value as DeviceStatus) ?? 'active')
-        }
+      <Divider label={t('terminals.connection')} labelPosition="left" mt="xs" />
+
+      <SimpleGrid cols={2}>
+        <TextInput
+          label={t('terminals.ipAddress')}
+          placeholder="192.168.1.10"
+          {...form.getInputProps('ip_address')}
+        />
+
+        <NumberInput
+          label={t('terminals.port')}
+          placeholder="80"
+          min={1}
+          max={65535}
+          allowDecimal={false}
+          allowNegative={false}
+          hideControls
+          {...form.getInputProps('port')}
+        />
+      </SimpleGrid>
+
+      <SimpleGrid cols={2}>
+        <TextInput
+          label={t('terminals.login')}
+          placeholder="admin"
+          autoComplete="off"
+          {...form.getInputProps('login')}
+        />
+
+        <PasswordInput
+          label={t('terminals.password')}
+          placeholder={
+            terminal?.has_password
+              ? t('terminals.passwordKeep')
+              : t('terminals.passwordPlaceholder')
+          }
+          autoComplete="new-password"
+          {...form.getInputProps('password')}
+        />
+      </SimpleGrid>
+
+      <TextInput
+        label={t('terminals.manufacturer')}
+        placeholder={t('terminals.manufacturerPlaceholder')}
+        {...form.getInputProps('manufacturer')}
       />
     </ResourceModal>
   )

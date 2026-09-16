@@ -9,6 +9,9 @@ export const UsersCreate = lazy(() => import('@/pages/users/users-create'))
 export const UsersEdit = lazy(() => import('@/pages/users/users-edit'))
 export const Rooms = lazy(() => import('@/pages/rooms/rooms'))
 export const Terminals = lazy(() => import('@/pages/terminals/terminals'))
+export const TerminalsShow = lazy(
+  () => import('@/pages/terminals/terminals-show'),
+)
 export const Tablets = lazy(() => import('@/pages/tablets/tablets'))
 export const Profile = lazy(() => import('@/pages/profile/profile'))
 

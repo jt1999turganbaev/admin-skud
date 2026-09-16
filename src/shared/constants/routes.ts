@@ -9,6 +9,7 @@ export const ROUTES = {
   USERS_EDIT: '/users/edit/:id',
   ROOMS: '/rooms',
   TERMINALS: '/terminals',
+  TERMINALS_SHOW: '/terminals/:id',
   TABLETS: '/tablets',
   PROFILE: '/profile',
 

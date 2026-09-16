@@ -2,6 +2,8 @@ import type { Tone } from '@/shared/types'
 
 export type DeviceStatus = 'active' | 'inactive'
 export type TerminalDirection = 'in' | 'out'
+/** Backend `TerminalManufacturerEnum`. */
+export type TerminalManufacturer = string
 
 /** AdminTerminalShowResource */
 export interface Terminal {
@@ -11,6 +13,14 @@ export interface Terminal {
   device_identifier: string
   status: DeviceStatus
   last_seen_at: string | null
+  /** Aloqa rekvizitlari. `password` hech qachon qaytmaydi — `has_password`. */
+  ip_address: string | null
+  port: number | null
+  login: string | null
+  manufacturer: TerminalManufacturer | null
+  has_password: boolean
+  /** Rekvizitlar to'liq — qurilmani sozlash va unga odam yozish mumkin. */
+  is_configured: boolean
   room: { id: number; name: string; number: string } | null
   /** Ro'yxat javobida qaytmasligi mumkin. */
   tablets_count?: number
@@ -31,7 +41,13 @@ export interface TerminalCreateBody {
   name: string
   direction: TerminalDirection
   device_identifier: string
-  status?: DeviceStatus
+  status?: DeviceStatus | null
+  ip_address?: string | null
+  port?: number | null
+  login?: string | null
+  /** Faqat yuboriladi, javobda qaytmaydi. */
+  password?: string | null
+  manufacturer?: TerminalManufacturer | null
 }
 
 export type TerminalUpdateBody = Partial<TerminalCreateBody>

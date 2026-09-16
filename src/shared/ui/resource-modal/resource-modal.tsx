@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { Button, Group, Modal, Stack } from '@mantine/core'
+import { Button, Group, Modal, Stack, type ModalProps } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
 
 interface ResourceModalProps {
@@ -9,6 +9,8 @@ interface ResourceModalProps {
   /** Yuborish jarayonida tugmalar bloklanadi. */
   isSubmitting?: boolean
   onSubmit: () => void
+  /** Maydonlar ko'p bo'lsa kengroq oyna. */
+  size?: ModalProps['size']
   children: ReactNode
 }
 
@@ -22,12 +24,13 @@ export const ResourceModal = ({
   title,
   isSubmitting = false,
   onSubmit,
+  size = 'md',
   children,
 }: ResourceModalProps) => {
   const { t } = useTranslation()
 
   return (
-    <Modal opened={opened} onClose={onClose} title={title} size="md">
+    <Modal opened={opened} onClose={onClose} title={title} size={size}>
       <form
         onSubmit={(event) => {
           event.preventDefault()

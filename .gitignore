@@ -7,3 +7,7 @@ dist-ssr
 *.log
 tsconfig.app.tsbuildinfo
 tsconfig.node.tsbuildinfo
+
+# Muhit sozlamalari — har bir kompyuterda o'zi
+.env
+.env.*

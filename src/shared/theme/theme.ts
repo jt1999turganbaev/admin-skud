@@ -106,6 +106,9 @@ export const theme: MantineThemeOverride = createTheme({
     Textarea: {
       defaultProps: { radius: 'sm', size: 'md' },
     },
+    NumberInput: {
+      defaultProps: { radius: 'sm', size: 'md' },
+    },
     // `@mantine/dates` maydonlari standart holda `sm` keladi — boshqa
     // inputlar bilan bir xil bo'lishi uchun ular ham `md`.
     DateTimePicker: {

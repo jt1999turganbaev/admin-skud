@@ -1,0 +1,72 @@
+/* Sarlavhadagi belgi chipi — kirish jurnali oynasidagi kabi */
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--primary-lighter);
+  color: var(--primary);
+}
+
+.meta {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-disabled);
+}
+
+.sectionTitle {
+  margin: 0 0 4px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-disabled);
+}
+
+/* ---------- qatorlar ---------- */
+
+.row {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 16px;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--divider);
+}
+
+.row:last-of-type {
+  border-bottom: none;
+}
+
+@media (max-width: 576px) {
+  .row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-disabled);
+}
+
+.value {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  word-break: break-word;
+}
+
+/* IP, port va qurilma ID — raqamlar tekis tursin */
+.mono {
+  font-family: var(--mantine-font-family-monospace);
+  font-size: 14px;
+}
