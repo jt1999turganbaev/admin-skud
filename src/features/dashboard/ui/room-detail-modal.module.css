@@ -1,0 +1,46 @@
+/* Sarlavha — kirish jurnali oynasidagi kabi belgi + nom + izoh */
+.heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.headingIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--primary-lighter);
+  color: var(--primary);
+}
+
+.headingText {
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text-primary);
+}
+
+.headingMeta {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-disabled);
+}
+
+/* Sana va vaqt qatorga sig'masa ham bo'linib ketmasin */
+.nowrap {
+  white-space: nowrap;
+}
+
+/* "Kirgan" ustuni: belgi va vaqt ustma-ust */
+.entered {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}

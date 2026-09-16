@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+
+    // `baseUrl` TS 7.0 da olib tashlanadi. `paths` o'zi yetadi —
+    // yo'llar shu tsconfig joylashgan papkaga nisbatan hisoblanadi.
+    "paths": { "@/*": ["./src/*"] }
+  },
+  "include": ["src"]
+}

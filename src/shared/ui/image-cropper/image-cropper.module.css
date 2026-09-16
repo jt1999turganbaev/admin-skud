@@ -1,0 +1,120 @@
+/* Kesish maydoni — loyiha dizayn tizimidagi ranglarda */
+.workspace {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 16px;
+}
+
+.stage {
+  display: flex;
+  /* Karta rasm o'lchamiga qarab qisqaradi, bo'sh joyni cho'zib egallamaydi */
+  flex: 0 1 auto;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  padding: 10px;
+  overflow: hidden;
+  border: 1px solid var(--divider);
+  border-radius: 16px;
+  background: var(--grey-100);
+}
+
+.cropper {
+  /* react-image-crop'ning o'z CSS o'zgaruvchilari */
+  --rc-drag-handle-size: 14px;
+  --rc-drag-handle-mobile-size: 26px;
+  --rc-border-color: #fff;
+
+  max-height: min(44dvh, 320px);
+  border-radius: 10px;
+}
+
+.image {
+  display: block;
+  max-width: 100%;
+  max-height: min(44dvh, 320px);
+  border-radius: 10px;
+}
+
+/* Kesilmagan qism — yumshoq parda */
+.cropper :global(.ReactCrop__crop-mask > rect) {
+  fill: #0f172a;
+  fill-opacity: 0.45;
+}
+
+/* Standart "yuruvchi chumolilar" o'rniga brand ramkasi. Kutubxona qoidasi
+   og'irroq (0,3,0), `.cropper` esa root elementning o'zida — shuning uchun
+   klass uch marta yozilgan. */
+.cropper.cropper.cropper :global(.ReactCrop__crop-selection) {
+  animation: none;
+  background-image: none;
+  border: 2px solid var(--primary);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.25);
+}
+
+/* Burchak tutqichlari */
+.cropper :global(.ReactCrop__drag-handle) {
+  border: 2px solid var(--primary);
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.25);
+}
+
+.cropper :global(.ReactCrop__drag-handle:focus) {
+  background: var(--primary-light);
+}
+
+/* Uchdan bir qoidasi chiziqlari */
+.cropper :global(.ReactCrop__rule-of-thirds-vt::before),
+.cropper :global(.ReactCrop__rule-of-thirds-vt::after),
+.cropper :global(.ReactCrop__rule-of-thirds-hz::before),
+.cropper :global(.ReactCrop__rule-of-thirds-hz::after) {
+  background: rgba(255, 255, 255, 0.55);
+}
+
+/* Natija — jonli ko'rinish */
+.preview {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 8px;
+  width: 108px;
+}
+
+.previewLabel {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--text-disabled);
+}
+
+.previewFrame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid var(--divider);
+  border-radius: 12px;
+  background: var(--grey-100);
+}
+
+.previewCanvas {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.previewSize {
+  font-size: 12px;
+  color: var(--text-disabled);
+}
+
+@media (max-width: 576px) {
+  .workspace {
+    flex-direction: column;
+    align-items: center;
+  }
+}

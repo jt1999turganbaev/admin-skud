@@ -1,0 +1,193 @@
+/* front/src/layouts/dashboard/nav-vertical.js — tashqi ustun 300px va 16px
+   ichki bo'shliq, ichida radius 12px li oq panel (300-32 = 268px).
+   Yig'ilgan holat NAV.W_MINI = 100 (panel 68px). */
+
+.sidebar {
+  flex: 0 0 auto;
+  width: 300px;
+  padding: 16px;
+  transition: width 0.18s ease;
+}
+
+.collapsed {
+  width: 100px;
+}
+
+.panel {
+  position: sticky;
+  top: 16px;
+  height: calc(100vh - 32px);
+  background: var(--surface);
+  border-radius: var(--panel-radius);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ---------- brend ---------- */
+.brand {
+  height: 80px;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 20px;
+}
+
+/* Akademiya logotipi, yonida nom */
+.logoMark {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.mark {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--primary);
+  white-space: nowrap;
+}
+
+.collapsed .brand {
+  justify-content: center;
+  padding: 0;
+}
+
+/* ---------- navigatsiya ---------- */
+.nav {
+  flex: 1;
+  min-height: 0;
+}
+
+.navInner {
+  padding: 8px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.footer {
+  padding: 8px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Navigatsiyadan ingichka chiziq bilan ajraladi */
+.footer::before {
+  content: '';
+  height: 1px;
+  background: var(--divider);
+  margin: 0 4px 8px;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  padding: 0 12px;
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  /* JihozMed menyusidagidek to'laroq yozuv — 500 juda ingichka ko'rinardi */
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+/* Yig'ilgan holatda panel 68px: yon to'ldirish 16px bo'lsa, element atigi
+   36px kenglikda qolib, faol fon tor va cho'zilgan ko'rinadi. To'ldirish
+   8px ga tushiriladi va element deyarli kvadrat bo'ladi (52x44). */
+.collapsed .navInner,
+.collapsed .footer {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.collapsed .link {
+  justify-content: center;
+  padding: 0;
+}
+
+.linkIcon {
+  flex: 0 0 auto;
+  color: #7e8999;
+}
+
+.link:hover {
+  background: rgba(95, 102, 115, 0.08);
+  color: var(--text-primary);
+}
+
+/* front nav-item: faol element oq matn + primary fon, hover alpha .69 */
+.active {
+  background: var(--primary);
+  color: #fff;
+  font-weight: 700;
+}
+
+.active:hover {
+  background: rgba(45, 122, 196, 0.69);
+  color: #fff;
+}
+
+.active .linkIcon {
+  color: #fff;
+}
+
+/* front nav-vertical: chiqish — navigatsiya elementi emas, tugma: tinch
+   holatda ham qizg'ish fon (#ffe3e3) va #d95e5e matn, yorliq markazda.
+   Barcha qoidalar ikki klassli: Mantine `UnstyledButton` reset'i
+   (`background: transparent`, `padding: 0`) bitta klassli qoidani bosib
+   ketadi, shuning uchun fon ko'rinmay qolardi. */
+.link.logout {
+  width: auto;
+  min-height: 40px;
+  margin: 4px 8px 0;
+  padding: 0 12px;
+  justify-content: center;
+  gap: 8px;
+  background: var(--logout-bg);
+  color: var(--logout-fg);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.collapsed .link.logout {
+  margin: 4px 0 0;
+  padding: 0;
+}
+
+.link.logout:hover {
+  background: #ffd1d1;
+  color: var(--logout-fg);
+}
+
+.logout .linkIcon {
+  color: var(--logout-fg);
+}
+
+.linkLabel {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* Markazda turishi uchun chiqish yorlig'i bo'sh joyni egallamaydi */
+.logout .linkLabel {
+  flex: 0 0 auto;
+}
+
+/* front: <img src="/final.svg" width="70%" style="margin: 24px auto 0" /> */
+.credit {
+  width: 70%;
+  height: auto;
+  display: block;
+  margin: 24px auto 0;
+}

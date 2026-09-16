@@ -1,0 +1,146 @@
+/**
+ * Global qatlam. Ranglar va o'lchamlar Mantine mavzusidan keladi; bu yerda
+ * faqat `front` loyihasidagi global.css ga mos keluvchi asosiy qoidalar va
+ * mavzudagi qiymatlarning CSS o'zgaruvchi ko'rinishi turadi (module'larda
+ * ishlatish uchun).
+ */
+
+:root {
+  /* brand — UZINFOCOM logotipi: belgi (asosiy) va yozuv (aksent) */
+  --primary-lighter: #d6e9fa;
+  --primary-light: #7fb4e6;
+  --primary: #2d7ac4;
+  --primary-dark: #1f5c9b;
+  --primary-darker: #133d6d;
+  --brand-orange: #fe830c;
+  --brand-orange-dark: #bf5d00;
+
+  /* grey */
+  --grey-100: #f3f4f6;
+  --grey-200: #e5e7eb;
+  --grey-300: #d1d5db;
+  --grey-400: #9ca3af;
+  --grey-500: #5f6673;
+  --grey-600: #3e4854;
+  --grey-800: #1f2937;
+  --grey-900: #111827;
+
+  /* text / surfaces — sof qora emas, yumshoq ko'kish-kulrang */
+  --text-primary: #2f3a4b;
+  --text-secondary: #4b5563;
+  --text-disabled: #6b7280;
+  --surface: #ffffff;
+  --surface-neutral: #f7f7f7;
+  /* front/src/layouts — sahifa foni va suzuvchi panellar */
+  --page-bg: #f3f6f9;
+  --panel-radius: 12px;
+  /* front #ffeded/#de6b6b dan bir pog'ona to'qroq — tugma tinch holatda ham
+     qizil ohangda ko'rinsin */
+  --logout-bg: #ffe3e3;
+  --logout-fg: #d95e5e;
+  --divider: rgba(95, 102, 115, 0.2);
+
+  /* status */
+  --success: #22c55e;
+  --success-dark: #118d57;
+  --warning: #ffab00;
+  --error: #ff5630;
+  --info: #00b8d9;
+
+  /* shape */
+  --radius-sm: 8px;
+  --radius-lg: 16px;
+
+  /* front/src/theme/custom-shadows.js — `card` va uning ko'tarilgan holati
+     (z20 pog'onasi). Boshqa soya ixtiro qilinmaydi, shu ikkitasi ishlatiladi. */
+  --shadow-card:
+    0 0 2px 0 rgba(95, 102, 115, 0.2), 0 12px 24px -4px rgba(95, 102, 115, 0.12);
+  --shadow-card-hover:
+    0 0 2px 0 rgba(95, 102, 115, 0.2), 0 20px 40px -4px rgba(95, 102, 115, 0.16);
+}
+
+html,
+body {
+  touch-action: manipulation;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  overflow-x: hidden;
+  background: var(--page-bg);
+  color: var(--text-primary);
+}
+
+/* Jadval va yon panel uchun ingichka scrollbar */
+.scroll::-webkit-scrollbar {
+  height: 9px;
+  width: 9px;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  background: var(--grey-300);
+  border-radius: 9px;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* front MuiOutlinedInput: chegara rangi alpha(grey[500], 0.2). Mantine'da
+   `default` variant chegarasi `gray-4` (#9CA3AF) — juda qattiq ko'rinadi va
+   kartalardagi yumshoq soyalar bilan urishadi. Klass emas, `--input-bd`
+   o'zgaruvchisi almashtiriladi va u aynan o'rash (wrapper) elementida
+   beriladi: fokus rangini Mantine input elementining o'zida
+   (`:focus { --input-bd: var(--input-bd-focus) }`) o'rnatadi, xato holati
+   esa og'irroq selektorda — ikkalasi ham buzilmaydi. Selektor og'irligi
+   Mantine'nikiga teng, global.css oxirida import qilinadi — shuning uchun
+   g'olib. `mantine-Input-wrapper` barcha input'larda bor (TextInput,
+   Select, Textarea, PasswordInput — hammasi Input ustiga qurilgan). */
+[data-mantine-color-scheme='light']
+  .mantine-Input-wrapper[data-variant='default'] {
+  --input-bd: var(--divider);
+  /* front MuiOutlinedInput (medium) balandligi 56px, Mantine `md` esa 42px —
+     o'rtasi: maydonlar bo'shroq nafas oladi, forma ham cho'zilib ketmaydi. */
+  --input-height-md: 48px;
+}
+
+/* Kiritilgan qiymat ochroq ko'rinmasin: Mantine input matni 400 qalinlikda
+   keladi. Bir pog'ona ko'tariladi — TextInput, Select (uning qiymati ham
+   input elementida), PasswordInput, Textarea, NumberInput uchun bir xil. */
+.mantine-Input-input {
+  font-weight: 500;
+}
+
+/* Ochiluvchi ro'yxat elementlari ham shu qalinlikda */
+.mantine-Combobox-option {
+  font-weight: 500;
+}
+
+/* front MuiFormLabel: yorliq qiymatdan ko'ra ikkinchi darajali — kulrang va
+   kichikroq. Mantine'da yorliq `body` rangini (#1f2937) meros qilib oladi,
+   ya'ni qiymat bilan bir xil qora bo'lib ketadi. */
+.mantine-InputWrapper-label {
+  color: var(--text-disabled);
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+/* Katak matni. Kataklarda `<Text size="sm">` ishlatiladi (rang va qalinlik
+   uchun), lekin u 14px'ni qat'iy belgilab qo'yadi — jadval mayda ko'rinadi.
+   Shu sababli o'lcham aynan jadval ichida bir pog'ona ko'tariladi; `Badge`
+   bunga tushmaydi, uning o'lchami mavzuda alohida berilgan. */
+.mantine-Table-td .mantine-Text-root,
+.mantine-Table-th .mantine-Text-root {
+  font-size: 16px;
+}
+
+/* front MuiTableRow override: oxirgi qatorda katak chegarasi ko'rinmaydi.
+   Mantine'ning `styles` API'si inline uslub beradi, ya'ni `:last-of-type`
+   kabi selektorlarni ifodalay olmaydi — shuning uchun bu qoida shu yerda. */
+.mantine-Table-tbody .mantine-Table-tr:last-of-type .mantine-Table-td {
+  border-color: transparent;
+}

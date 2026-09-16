@@ -1,0 +1,175 @@
+/* ---------- sarlavha ---------- */
+
+.header {
+  align-items: flex-start;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--divider);
+}
+
+.headerTitle {
+  flex: 1;
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Belgi chipi — dashboard kartalaridagi kabi yumshoq fon */
+.headingIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--primary-lighter);
+  color: var(--primary);
+}
+
+.headingText {
+  display: block;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text-primary);
+}
+
+.headingMeta {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-disabled);
+}
+
+/* Yopish tugmasi — chegarali kvadrat */
+.close {
+  border: 1px solid var(--divider);
+  border-radius: var(--radius-sm);
+}
+
+.body {
+  padding: 24px;
+}
+
+/* ---------- yuqori blok: rasm + yig'ma karta ---------- */
+
+.top {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .top {
+    grid-template-columns: 1fr;
+  }
+}
+
+.photoBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Surat doim kvadrat (1:1) */
+.photo {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border: 1px solid var(--divider);
+  border-radius: 12px;
+  background: var(--grey-100);
+}
+
+.photoEmpty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border: 1px dashed var(--divider);
+  border-radius: 12px;
+  background: var(--grey-100);
+  color: var(--text-disabled);
+  font-size: 12px;
+}
+
+.photoCaption {
+  font-size: 12px;
+  color: var(--text-disabled);
+}
+
+/* Asosiy ko'rsatkichlar — yumshoq fonli karta */
+.summary {
+  padding: 4px 20px;
+  border: 1px solid var(--divider);
+  border-radius: var(--panel-radius);
+  background: var(--grey-100);
+}
+
+/* ---------- qatorlar ---------- */
+
+.row {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 16px;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--divider);
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+@media (max-width: 576px) {
+  .row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-disabled);
+}
+
+.value {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  word-break: break-word;
+}
+
+.row[data-align='right'] .value {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+/* IP va ULID — raqamlar tekis tursin */
+.mono {
+  font-family: var(--mantine-font-family-monospace);
+  font-size: 14px;
+}
+
+/* ---------- bo'lim sarlavhasi ---------- */
+
+.sectionTitle {
+  margin: 28px 0 4px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-disabled);
+}

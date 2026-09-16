@@ -1,0 +1,17 @@
+/* front: background common.white, padding 24px, borderRadius 12px */
+.panel {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  padding: 24px;
+  border-radius: var(--panel-radius);
+  /* front MuiCard bilan bir xil soya — panellar tekis, kartalar suzuvchi
+     bo'lib turgani nomutanosib ko'rinardi. */
+  box-shadow: var(--shadow-card);
+}
+
+@media (max-width: 768px) {
+  .panel {
+    padding: 16px;
+  }
+}
