@@ -77,6 +77,7 @@
     "phone": "Telefon",
     "role": "Rol",
     "account": "Akkawnt sazlawları",
+    "isTop": "TOP",
     "passwordHint": "Bos qaldırılsa, házirgi parol saqlanıp qaladı.",
     "notFound": "Filtrlerge sáykes paydalanıwshı tabılmadı.",
     "firstNamePlaceholder": "Attı kirgiziń",
@@ -109,8 +110,11 @@
     "terminalsCount": "Terminallar",
     "notFound": "Filtrlerge sáykes xana tabılmadı.",
     "numberPlaceholder": "A-01",
+    "numberStation": "Stanciya nomeri",
+    "numberStationPlaceholder": "Stanciya nomerin kirgiziń",
     "namePlaceholder": "Xana atın kirgiziń",
     "numberRequired": "Xana nomerin kirgiziń",
+    "numberStationRequired": "Stanciya nomerin kirgiziń",
     "nameRequired": "Xana atın kirgiziń"
   },
   "terminals": {

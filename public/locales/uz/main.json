@@ -77,6 +77,7 @@
     "phone": "Telefon",
     "role": "Rol",
     "account": "Hisob sozlamalari",
+    "isTop": "TOP",
     "passwordHint": "Bo’sh qoldirilsa, joriy parol saqlanib qoladi.",
     "notFound": "Filtrlarga mos foydalanuvchi topilmadi.",
     "firstNamePlaceholder": "Ism kiriting",
@@ -109,8 +110,11 @@
     "terminalsCount": "Terminallar",
     "notFound": "Filtrlarga mos xona topilmadi.",
     "numberPlaceholder": "A-01",
+    "numberStation": "Stansiya raqami",
+    "numberStationPlaceholder": "Stansiya raqamini kiriting",
     "namePlaceholder": "Xona nomini kiriting",
     "numberRequired": "Xona raqamini kiriting",
+    "numberStationRequired": "Stansiya raqamini kiriting",
     "nameRequired": "Xona nomini kiriting"
   },
   "terminals": {

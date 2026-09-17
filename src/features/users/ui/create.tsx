@@ -26,6 +26,7 @@ export const UserCreate = () => {
         ...(values.role !== 'user' ? { password: values.password } : {}),
         status: values.status,
         role: values.role,
+        is_top: values.is_top,
         // Backend base64 kutadi; tanlanmagan bo'lsa yuborilmaydi.
         ...(values.photo ? { photo: values.photo } : {}),
       },

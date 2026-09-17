@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Select, TextInput } from '@mantine/core'
+import { NumberInput, Select, TextInput } from '@mantine/core'
 import { isNotEmpty, useForm } from '@mantine/form'
 import { useTranslation } from 'react-i18next'
 
@@ -27,9 +27,18 @@ interface RoomFormModalProps {
   room?: Room | null
 }
 
-const EMPTY: RoomCreateBody = {
+/**
+ * `NumberInput` son yoki bo'sh bo'lsa `''` beradi. Backend satr kutadi —
+ * yuborishda satrga o'giriladi.
+ */
+type RoomFormValues = Omit<RoomCreateBody, 'number_station'> & {
+  number_station: number | string
+}
+
+const EMPTY: RoomFormValues = {
   name: EMPTY_TRANSLATABLE,
   number: '',
+  number_station: '',
   status: 'active',
 }
 
@@ -44,7 +53,7 @@ export const RoomFormModal = ({
   const create = useCreateRoom()
   const update = useUpdateRoom()
 
-  const form = useForm<RoomCreateBody>({
+  const form = useForm<RoomFormValues>({
     initialValues: EMPTY,
     validate: {
       // Nom ikkala tilda majburiy.
@@ -53,6 +62,8 @@ export const RoomFormModal = ({
         qr: isNotEmpty(t('rooms.nameRequired')),
       },
       number: isNotEmpty(t('rooms.numberRequired')),
+      number_station: (value) =>
+        value === '' ? t('rooms.numberStationRequired') : null,
     },
   })
 
@@ -66,6 +77,7 @@ export const RoomFormModal = ({
             // Javobdagi `name` — faqat tanlangan til; formaga ikkalasi kerak.
             name: toTranslatable(room.translations?.name),
             number: room.number,
+            number_station: room.number_station ?? '',
             status: room.status,
           }
         : EMPTY,
@@ -74,10 +86,12 @@ export const RoomFormModal = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [opened, room])
 
-  const handleSubmit = (values: RoomCreateBody) => {
+  const handleSubmit = (values: RoomFormValues) => {
     const body: RoomCreateBody = {
       ...values,
       name: { uz: values.name.uz.trim(), qr: values.name.qr.trim() },
+      // Validatsiyadan o'tgan — bo'sh emas.
+      number_station: String(values.number_station),
     }
     const onSuccess = () => onClose()
     // 422 — maydon xatolari formaning o'zida ko'rsatiladi.
@@ -100,6 +114,16 @@ export const RoomFormModal = ({
         placeholder={t('rooms.numberPlaceholder')}
         withAsterisk
         {...form.getInputProps('number')}
+      />
+
+      <NumberInput
+        label={t('rooms.numberStation')}
+        placeholder={t('rooms.numberStationPlaceholder')}
+        allowDecimal={false}
+        allowNegative={false}
+        hideControls
+        withAsterisk
+        {...form.getInputProps('number_station')}
       />
 
       {LANGUAGES.map((language) => (

@@ -67,6 +67,7 @@ export const UserEdit = () => {
       phone: `+998${values.phone}`,
       status: values.status,
       role: values.role,
+      is_top: values.is_top,
       // Parol bo'sh bo'lsa yoki oddiy foydalanuvchi bo'lsa yuborilmaydi.
       ...(values.password && values.role !== 'user'
         ? { password: values.password }

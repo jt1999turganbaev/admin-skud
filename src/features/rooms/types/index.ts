@@ -7,6 +7,7 @@ export interface Room {
   id: number
   name: string
   number: string
+  number_station: string | null
   status: RoomStatus
   terminals_count: number
   /** Ikkala tildagi asl qiymat — tahrirlash formasi uchun. */
@@ -27,6 +28,8 @@ export interface RoomCreateBody {
   /** Ikkala tilda majburiy. */
   name: Translatable
   number: string
+  /** Stansiya raqami — majburiy; formada faqat raqam, backendga satr. */
+  number_station: string
   status?: RoomStatus
 }
 

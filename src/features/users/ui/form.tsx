@@ -6,6 +6,7 @@ import {
   PasswordInput,
   Select,
   Stack,
+  Switch,
   Text,
   TextInput,
   Title,
@@ -38,6 +39,7 @@ export interface UserFormValues {
   photo: string | null
   status: UserStatus
   role: UserRole
+  is_top: boolean
 }
 
 const EMPTY: UserFormValues = {
@@ -49,6 +51,7 @@ const EMPTY: UserFormValues = {
   photo: null,
   status: 'active',
   role: 'user',
+  is_top: false,
 }
 
 /** Tahrirlashda mavjud yozuvni forma qiymatlariga o'giradi. */
@@ -61,6 +64,7 @@ export const toFormValues = (user: User): UserFormValues => ({
   photo: user.photo ?? null,
   status: user.status,
   role: user.role,
+  is_top: Boolean(user.is_top),
 })
 
 /** Backend 422 javobini maydonlarga qo'yish uchun forma bilan aloqa. */
@@ -225,6 +229,13 @@ export const UserForm = ({
                 )}
               </Grid.Col>
             )}
+
+            <Grid.Col span={12}>
+              <Switch
+                label={t('users.isTop')}
+                {...form.getInputProps('is_top', { type: 'checkbox' })}
+              />
+            </Grid.Col>
           </Grid>
         </Card>
 

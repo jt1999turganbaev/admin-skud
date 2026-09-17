@@ -20,6 +20,7 @@ export interface User {
   phone: string
   status: UserStatus
   role: UserRole
+  is_top: boolean
   created_at: string | null
   updated_at: string | null
 }
@@ -44,6 +45,7 @@ export interface UserCreateBody {
   photo?: string | null
   status?: UserStatus
   role?: UserRole
+  is_top?: boolean
 }
 
 /** AdminUserUpdateRequest — hamma maydon ixtiyoriy. */

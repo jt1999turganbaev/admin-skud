@@ -36,7 +36,7 @@ import { formatDateTime } from '@/shared/utils/format-date'
 
 import { RoomFormModal } from './room-form-modal'
 
-const COLUMNS = 7
+const COLUMNS = 8
 
 export const RoomsList = () => {
   const { params, setFilter, setPage, setPerPage, toggleSort } =
@@ -121,6 +121,7 @@ export const RoomsList = () => {
                 <SortableTh field="number" params={params} onSort={toggleSort}>
                   {t('rooms.number')}
                 </SortableTh>
+                <Table.Th>{t('rooms.numberStation')}</Table.Th>
                 <SortableTh field="name" params={params} onSort={toggleSort}>
                   {t('rooms.name')}
                 </SortableTh>
@@ -159,6 +160,11 @@ export const RoomsList = () => {
                   <Table.Td>
                     <Text size="sm" fw={600} className="tabular">
                       {room.number}
+                    </Text>
+                  </Table.Td>
+                  <Table.Td>
+                    <Text size="sm" className="tabular">
+                      {room.number_station ?? '—'}
                     </Text>
                   </Table.Td>
                   <Table.Td>
