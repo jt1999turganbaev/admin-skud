@@ -11,7 +11,7 @@
     "rooms": "Xonalar",
     "terminals": "Terminallar",
     "tablets": "Planshetlar",
-    "assignments": "Vazifalar",
+    "assignments": "Xonaga biriktirish",
     "logout": "Chiqish",
     "profile": "Profil",
     "toggleSidebar": "Menyuni yig’ish",
@@ -77,7 +77,6 @@
     "phone": "Telefon",
     "role": "Rol",
     "account": "Hisob sozlamalari",
-    "isTop": "TOP",
     "passwordHint": "Bo’sh qoldirilsa, joriy parol saqlanib qoladi.",
     "notFound": "Filtrlarga mos foydalanuvchi topilmadi.",
     "firstNamePlaceholder": "Ism kiriting",
@@ -115,7 +114,8 @@
     "namePlaceholder": "Xona nomini kiriting",
     "numberRequired": "Xona raqamini kiriting",
     "numberStationRequired": "Stansiya raqamini kiriting",
-    "nameRequired": "Xona nomini kiriting"
+    "nameRequired": "Xona nomini kiriting",
+    "task": "Vazifa"
   },
   "terminals": {
     "title": "Terminallar",
@@ -177,7 +177,7 @@
   },
   "role": {
     "admin": "Administrator",
-    "operator": "Operator",
+    "nazoratchi": "Nazoratchi",
     "user": "Foydalanuvchi"
   },
   "dashboard": {
@@ -224,9 +224,9 @@
     "id": "ID"
   },
   "assignments": {
-    "title": "Vazifalar",
-    "add": "Vazifa qo‘shish",
-    "edit": "Vazifani tahrirlash",
+    "title": "Xonaga biriktirish",
+    "add": "Xonaga biriktirish",
+    "edit": "Biriktirishni tahrirlash",
     "searchPlaceholder": "F.I.O., xona yoki vazifa bo’yicha qidirish",
     "user": "Foydalanuvchi",
     "room": "Xona",
@@ -240,7 +240,7 @@
     "startsRequired": "Boshlanish vaqtini kiriting",
     "endsRequired": "Tugash vaqtini kiriting",
     "endsAfterStarts": "Tugash vaqti boshlanishdan keyin bo’lsin",
-    "notFound": "Filtrlarga mos vazifa topilmadi.",
+    "notFound": "Filtrlarga mos biriktirish topilmadi.",
     "selectDateTime": "Sana va vaqtni tanlang",
     "startsInFuture": "Boshlanish sanasi bugundan oldin bo’lmasin",
     "endsHint": "Avval boshlanish vaqtini tanlang",
@@ -251,7 +251,7 @@
     "taskDescriptionPlaceholder": "Qisqacha tavsif",
     "taskDescriptionRequired": "Vazifa tavsifini kiriting",
     "taskDescriptionMax": "Tavsif {{max}} belgidan oshmasin",
-    "details": "Vazifa tafsilotlari"
+    "details": "Biriktirish tafsilotlari"
   },
   "imageCropper": {
     "title": "Rasmni kesish",

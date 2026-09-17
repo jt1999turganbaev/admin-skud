@@ -34,6 +34,9 @@ export interface TaskCreateBody {
 /** AdminTaskUpdateRequest — hamma maydon ixtiyoriy. */
 export type TaskUpdateBody = Partial<TaskCreateBody>
 
+/** Tavsif ovozda o'qiladi — TTS'ning 4096 belgilik chegarasi tufayli 4000. */
+export const TASK_DESCRIPTION_MAX = 4000
+
 export const TASK_STATUS_KEY: Record<TaskStatus, string> = {
   active: 'status.active',
   inactive: 'status.inactive',

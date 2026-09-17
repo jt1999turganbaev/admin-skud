@@ -5,7 +5,12 @@ import { useCreateUser } from '@/features/users/queries/users-queries'
 import { ROUTES } from '@/shared/constants/routes'
 import { toFormErrors } from '@/shared/utils/form-errors'
 
-import { UserForm, type UserFormHelpers, type UserFormValues } from './form'
+import {
+  needsPassword,
+  UserForm,
+  type UserFormHelpers,
+  type UserFormValues,
+} from './form'
 
 export const UserCreate = () => {
   const { t } = useTranslation()
@@ -22,11 +27,10 @@ export const UserCreate = () => {
         last_name: values.last_name,
         middle_name: values.middle_name || null,
         phone: `+998${values.phone}`,
-        // Oddiy foydalanuvchi uchun parol yuborilmaydi.
-        ...(values.role !== 'user' ? { password: values.password } : {}),
+        // Parol faqat admin uchun yuboriladi.
+        ...(needsPassword(values.role) ? { password: values.password } : {}),
         status: values.status,
         role: values.role,
-        is_top: values.is_top,
         // Backend base64 kutadi; tanlanmagan bo'lsa yuborilmaydi.
         ...(values.photo ? { photo: values.photo } : {}),
       },

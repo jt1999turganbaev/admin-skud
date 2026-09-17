@@ -6,7 +6,6 @@ import {
   PasswordInput,
   Select,
   Stack,
-  Switch,
   Text,
   TextInput,
   Title,
@@ -28,6 +27,12 @@ import { toLocalPhone } from '@/shared/utils/format-phone'
 
 import { PhotoField } from './photo-field'
 
+/**
+ * Parol faqat admin panelga kiradigan rol uchun kerak — oddiy foydalanuvchi
+ * va nazoratchi tizimga parol bilan kirmaydi.
+ */
+export const needsPassword = (role: UserRole) => role === 'admin'
+
 /** Formada telefon 998siz saqlanadi, yuborishda "+998" qo'shiladi. */
 export interface UserFormValues {
   first_name: string
@@ -39,7 +44,6 @@ export interface UserFormValues {
   photo: string | null
   status: UserStatus
   role: UserRole
-  is_top: boolean
 }
 
 const EMPTY: UserFormValues = {
@@ -51,7 +55,6 @@ const EMPTY: UserFormValues = {
   photo: null,
   status: 'active',
   role: 'user',
-  is_top: false,
 }
 
 /** Tahrirlashda mavjud yozuvni forma qiymatlariga o'giradi. */
@@ -64,7 +67,6 @@ export const toFormValues = (user: User): UserFormValues => ({
   photo: user.photo ?? null,
   status: user.status,
   role: user.role,
-  is_top: Boolean(user.is_top),
 })
 
 /** Backend 422 javobini maydonlarga qo'yish uchun forma bilan aloqa. */
@@ -102,9 +104,8 @@ export const UserForm = ({
       first_name: isNotEmpty(t('users.firstNameRequired')),
       last_name: isNotEmpty(t('users.lastNameRequired')),
       phone: hasLength({ min: 9 }, t('auth.phoneRequired')),
-      // Oddiy foydalanuvchi tizimga kirmaydi — parol so'ralmaydi.
       password: (value, values) =>
-        isEdit || values.role === 'user' || value.length >= 8
+        isEdit || !needsPassword(values.role) || value.length >= 8
           ? null
           : t('users.passwordMin'),
     },
@@ -210,7 +211,7 @@ export const UserForm = ({
               />
             </Grid.Col>
 
-            {form.values.role !== 'user' && (
+            {needsPassword(form.values.role) && (
               <Grid.Col span={{ base: 12, sm: 6, lg: 4 }}>
                 <PasswordInput
                   label={t('users.password')}
@@ -229,13 +230,6 @@ export const UserForm = ({
                 )}
               </Grid.Col>
             )}
-
-            <Grid.Col span={12}>
-              <Switch
-                label={t('users.isTop')}
-                {...form.getInputProps('is_top', { type: 'checkbox' })}
-              />
-            </Grid.Col>
           </Grid>
         </Card>
 

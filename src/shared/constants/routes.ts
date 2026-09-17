@@ -8,13 +8,15 @@ export const ROUTES = {
   USERS_CREATE: '/users/create',
   USERS_EDIT: '/users/edit/:id',
   ROOMS: '/rooms',
+  ROOMS_CREATE: '/rooms/create',
+  ROOMS_EDIT: '/rooms/edit/:id',
   TERMINALS: '/terminals',
   TERMINALS_SHOW: '/terminals/:id',
   TABLETS: '/tablets',
   PROFILE: '/profile',
 
-  // Vazifa endi biriktirish bilan birga yaratiladi — alohida "Vazifalar"
-  // sahifasi yo'q, `/tasks` biriktirilgan vazifalar ro'yxatini ochadi.
+  // "Xonaga biriktirish" — foydalanuvchiga xonaga kirish huquqini beradi.
+  // Vazifa endi xonaga tegishli (xona formasida); manzil eskicha `/tasks`.
   ASSIGNMENTS: '/tasks',
   ASSIGNMENTS_CREATE: '/tasks/create',
   ASSIGNMENTS_EDIT: '/tasks/edit/:id',

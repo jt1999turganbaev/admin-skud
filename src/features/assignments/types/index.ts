@@ -22,7 +22,7 @@ export interface AssignmentRoom {
   number: string
 }
 
-/** AdminRoomUserAssignmentShowResource.task */
+/** AdminRoomUserAssignmentShowResource.task — xonaning topshirig'i. */
 export interface AssignmentTask {
   id: number
   name: string
@@ -52,26 +52,10 @@ export interface AssignmentListItem {
   room?: AssignmentRoom
 }
 
-/**
- * Biriktirish bilan birga yaratiladigan topshiriq.
- *
- * Backend mantig'i o'zgargan: endi mavjud topshiriqni ulash yo'q —
- * "umumiy topshiriqni bitta biriktirish bilan o'chirish boshqalarnikini
- * ham yo'q qilardi". Topshiriq har bir biriktirishga tegishli.
- */
-export interface AssignmentTaskBody {
-  /** Ikkala tilda majburiy. */
-  name: Translatable
-  /** Har bir til ixtiyoriy, eng ko'pi 4000 belgi. */
-  description: NullableTranslatable
-}
-
 /** AdminRoomUserAssignmentCreateRequest */
 export interface AssignmentCreateBody {
   user_id: number
   room_id: number
-  /** Topshiriqsiz biriktirish ham bo'ladi (masalan, nazoratchi). */
-  task?: AssignmentTaskBody
   starts_at: string
   ends_at: string
   status?: AssignmentStatus

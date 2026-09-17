@@ -1,4 +1,4 @@
-export type UserRole = 'admin' | 'operator' | 'user'
+export type UserRole = 'admin' | 'nazoratchi' | 'user'
 export type UserStatus = 'active' | 'inactive' | 'blocked'
 
 /** AdminAuthLoginRequest */
@@ -24,7 +24,7 @@ export interface AuthUser {
 /** `main` ns dagi kalitlar — matnni komponent `t()` bilan oladi. */
 export const USER_ROLE_KEY: Record<UserRole, string> = {
   admin: 'role.admin',
-  operator: 'role.operator',
+  nazoratchi: 'role.nazoratchi',
   user: 'role.user',
 }
 

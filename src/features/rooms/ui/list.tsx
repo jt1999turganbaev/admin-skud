@@ -11,6 +11,7 @@ import {
 } from '@mantine/core'
 import { IconPlus, IconSearch } from '@tabler/icons-react'
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 
 import {
   useDeleteRoom,
@@ -23,6 +24,7 @@ import {
   ROOM_STATUS_TONE,
   type Room,
 } from '@/features/rooms/types'
+import { buildRoute, ROUTES } from '@/shared/constants/routes'
 import { useDebounce, useDeleteConfirm, useFilterParams } from '@/shared/hooks'
 import {
   Badge,
@@ -34,8 +36,6 @@ import {
 } from '@/shared/ui'
 import { formatDateTime } from '@/shared/utils/format-date'
 
-import { RoomFormModal } from './room-form-modal'
-
 const COLUMNS = 8
 
 export const RoomsList = () => {
@@ -45,8 +45,7 @@ export const RoomsList = () => {
   const [search, setSearch] = useState('')
   const debouncedSearch = useDebounce(search)
 
-  const [editing, setEditing] = useState<Room | null>(null)
-  const [modalOpened, setModalOpened] = useState(false)
+  const navigate = useNavigate()
 
   const { data, isPending, error, refetch } = useFetchRooms({
     ...params,
@@ -58,15 +57,10 @@ export const RoomsList = () => {
   const rooms = data?.data ?? []
   const meta = data?.meta
 
-  const openCreate = () => {
-    setEditing(null)
-    setModalOpened(true)
-  }
+  const openCreate = () => navigate(ROUTES.ROOMS_CREATE)
 
-  const openEdit = (room: Room) => {
-    setEditing(room)
-    setModalOpened(true)
-  }
+  const openEdit = (room: Room) =>
+    navigate(buildRoute(ROUTES.ROOMS_EDIT, { id: room.id }))
 
   return (
     <Stack gap={32}>
@@ -211,12 +205,6 @@ export const RoomsList = () => {
           onPerPageChange={setPerPage}
         />
       </Panel>
-
-      <RoomFormModal
-        opened={modalOpened}
-        onClose={() => setModalOpened(false)}
-        room={editing}
-      />
     </Stack>
   )
 }

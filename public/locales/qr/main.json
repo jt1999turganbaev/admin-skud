@@ -11,7 +11,7 @@
     "rooms": "Xanalar",
     "terminals": "Terminallar",
     "tablets": "Planshetler",
-    "assignments": "Wazıypalar",
+    "assignments": "Xanaǵa biriktiriw",
     "logout": "Shıǵıw",
     "profile": "Profil",
     "toggleSidebar": "Menyudı jıynaw",
@@ -77,7 +77,6 @@
     "phone": "Telefon",
     "role": "Rol",
     "account": "Akkawnt sazlawları",
-    "isTop": "TOP",
     "passwordHint": "Bos qaldırılsa, házirgi parol saqlanıp qaladı.",
     "notFound": "Filtrlerge sáykes paydalanıwshı tabılmadı.",
     "firstNamePlaceholder": "Attı kirgiziń",
@@ -115,7 +114,8 @@
     "namePlaceholder": "Xana atın kirgiziń",
     "numberRequired": "Xana nomerin kirgiziń",
     "numberStationRequired": "Stanciya nomerin kirgiziń",
-    "nameRequired": "Xana atın kirgiziń"
+    "nameRequired": "Xana atın kirgiziń",
+    "task": "Wazıypa"
   },
   "terminals": {
     "title": "Terminallar",
@@ -177,7 +177,7 @@
   },
   "role": {
     "admin": "Administrator",
-    "operator": "Operator",
+    "nazoratchi": "Qadaǵalawshı",
     "user": "Paydalanıwshı"
   },
   "dashboard": {
@@ -224,9 +224,9 @@
     "id": "ID"
   },
   "assignments": {
-    "title": "Wazıypalar",
-    "add": "Wazıyypa qosıw",
-    "edit": "Wazıypanı ózgertiw",
+    "title": "Xanaǵa biriktiriw",
+    "add": "Xanaǵa biriktiriw",
+    "edit": "Biriktiriwdi ózgertiw",
     "searchPlaceholder": "A.Á.F., xana yamasa wazıypa boyınsha izlew",
     "user": "Paydalanıwshı",
     "room": "Xana",
@@ -240,7 +240,7 @@
     "startsRequired": "Baslanıw waqtın kirgiziń",
     "endsRequired": "Tawısılıw waqtın kirgiziń",
     "endsAfterStarts": "Tawısılıw waqtı baslanıw waqtınan keyin bolsın",
-    "notFound": "Filtrlerge sáykes wazıypa tabılmadı.",
+    "notFound": "Filtrlerge sáykes biriktiriw tabılmadı.",
     "selectDateTime": "Sáne hám waqıttı tańlań",
     "startsInFuture": "Baslanıw sánesi búginnen burın bolmasın",
     "endsHint": "Dáslep baslanıw waqtın tańlań",
@@ -251,7 +251,7 @@
     "taskDescriptionPlaceholder": "Qısqasha xarakteristika",
     "taskDescriptionRequired": "Wazıypa xarakteristikasın kirgiziń",
     "taskDescriptionMax": "Táriyp {{max}} belgiden aspawı kerek",
-    "details": "Wazıypa tolıq maǵlıwmatları"
+    "details": "Biriktiriw tolıq maǵlıwmatları"
   },
   "imageCropper": {
     "title": "Súwretti qırqıw",

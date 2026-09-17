@@ -8,6 +8,8 @@ export const Users = lazy(() => import('@/pages/users/users'))
 export const UsersCreate = lazy(() => import('@/pages/users/users-create'))
 export const UsersEdit = lazy(() => import('@/pages/users/users-edit'))
 export const Rooms = lazy(() => import('@/pages/rooms/rooms'))
+export const RoomsCreate = lazy(() => import('@/pages/rooms/rooms-create'))
+export const RoomsEdit = lazy(() => import('@/pages/rooms/rooms-edit'))
 export const Terminals = lazy(() => import('@/pages/terminals/terminals'))
 export const TerminalsShow = lazy(
   () => import('@/pages/terminals/terminals-show'),
