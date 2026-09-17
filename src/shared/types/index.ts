@@ -1,4 +1,5 @@
 export type { FilterParams } from './filterParams'
+export type { NullableTranslatable, Translatable } from './translatable'
 export type {
   HTTPError,
   ResponseWithData,

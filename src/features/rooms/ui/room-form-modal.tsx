@@ -14,7 +14,9 @@ import {
   type RoomCreateBody,
   type RoomStatus,
 } from '@/features/rooms/types'
+import { LANGUAGES } from '@/shared/config/languages'
 import type { HTTPError } from '@/shared/types/http'
+import { EMPTY_TRANSLATABLE, toTranslatable } from '@/shared/types/translatable'
 import { ResourceModal } from '@/shared/ui'
 import { toFormErrors } from '@/shared/utils/form-errors'
 
@@ -25,7 +27,11 @@ interface RoomFormModalProps {
   room?: Room | null
 }
 
-const EMPTY: RoomCreateBody = { name: '', number: '', status: 'active' }
+const EMPTY: RoomCreateBody = {
+  name: EMPTY_TRANSLATABLE,
+  number: '',
+  status: 'active',
+}
 
 export const RoomFormModal = ({
   opened,
@@ -41,7 +47,11 @@ export const RoomFormModal = ({
   const form = useForm<RoomCreateBody>({
     initialValues: EMPTY,
     validate: {
-      name: isNotEmpty(t('rooms.nameRequired')),
+      // Nom ikkala tilda majburiy.
+      name: {
+        uz: isNotEmpty(t('rooms.nameRequired')),
+        qr: isNotEmpty(t('rooms.nameRequired')),
+      },
       number: isNotEmpty(t('rooms.numberRequired')),
     },
   })
@@ -52,7 +62,12 @@ export const RoomFormModal = ({
 
     form.setValues(
       room
-        ? { name: room.name, number: room.number, status: room.status }
+        ? {
+            // Javobdagi `name` — faqat tanlangan til; formaga ikkalasi kerak.
+            name: toTranslatable(room.translations?.name),
+            number: room.number,
+            status: room.status,
+          }
         : EMPTY,
     )
     form.resetDirty()
@@ -60,13 +75,16 @@ export const RoomFormModal = ({
   }, [opened, room])
 
   const handleSubmit = (values: RoomCreateBody) => {
+    const body: RoomCreateBody = {
+      ...values,
+      name: { uz: values.name.uz.trim(), qr: values.name.qr.trim() },
+    }
     const onSuccess = () => onClose()
     // 422 — maydon xatolari formaning o'zida ko'rsatiladi.
     const onError = (error: HTTPError) => form.setErrors(toFormErrors(error))
 
-    if (room)
-      update.mutate({ id: room.id, body: values }, { onSuccess, onError })
-    else create.mutate(values, { onSuccess, onError })
+    if (room) update.mutate({ id: room.id, body }, { onSuccess, onError })
+    else create.mutate(body, { onSuccess, onError })
   }
 
   return (
@@ -84,12 +102,15 @@ export const RoomFormModal = ({
         {...form.getInputProps('number')}
       />
 
-      <TextInput
-        label={t('rooms.name')}
-        placeholder={t('rooms.namePlaceholder')}
-        withAsterisk
-        {...form.getInputProps('name')}
-      />
+      {LANGUAGES.map((language) => (
+        <TextInput
+          key={language.code}
+          label={`${t('rooms.name')} (${language.label})`}
+          placeholder={t('rooms.namePlaceholder')}
+          withAsterisk
+          {...form.getInputProps(`name.${language.code}`)}
+        />
+      ))}
 
       <Select
         label={t('common.status')}

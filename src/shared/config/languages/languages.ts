@@ -1,11 +1,9 @@
-export const DEFAULT_LANGUAGE = 'uz'
+export const DEFAULT_LANGUAGE = 'qr'
 
-/** Qo'llab-quvvatlanadigan tillar — el-yurt loyihasidagi to'plam. */
+/** Faqat shu ikki til — qoraqalpoqcha birinchi va standart. */
 export const LANGUAGES = [
+  { code: 'qr', label: 'Qaraqalpaqsha' },
   { code: 'uz', label: 'O’zbekcha' },
-  { code: 'qq', label: 'Qaraqalpaqsha' },
-  { code: 'ru', label: 'Русский' },
-  { code: 'en', label: 'English' },
 ] as const
 
 export type LanguageCode = (typeof LANGUAGES)[number]['code']

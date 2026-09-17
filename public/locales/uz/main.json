@@ -246,6 +246,7 @@
     "taskDescription": "Vazifa tavsifi",
     "taskDescriptionPlaceholder": "Qisqacha tavsif",
     "taskDescriptionRequired": "Vazifa tavsifini kiriting",
+    "taskDescriptionMax": "Tavsif {{max}} belgidan oshmasin",
     "details": "Vazifa tafsilotlari"
   },
   "imageCropper": {

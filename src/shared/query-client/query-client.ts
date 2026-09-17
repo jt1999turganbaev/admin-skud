@@ -1,4 +1,5 @@
 import { MutationCache, QueryClient } from '@tanstack/react-query'
+import i18n from 'i18next'
 
 import { isForbiddenError, notifyForbidden } from '@/shared/http/forbidden'
 
@@ -19,4 +20,12 @@ export const queryClient = new QueryClient({
       staleTime: 60_000,
     },
   },
+})
+
+/**
+ * Backend nom va tavsiflarni `locale` bo'yicha bitta tilda qaytaradi —
+ * til almashganda yuklangan ma'lumotlar yangi tilda qayta so'raladi.
+ */
+i18n.on('languageChanged', () => {
+  void queryClient.invalidateQueries()
 })

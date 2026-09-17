@@ -26,7 +26,13 @@ import { useFetchRoomsList } from '@/features/rooms/queries/rooms-queries'
 import { getRoomLabel } from '@/features/rooms/types'
 import { useFetchUsersList } from '@/features/users/queries/users-queries'
 import { getFullName } from '@/features/users/types'
+import { LANGUAGES } from '@/shared/config/languages'
 import { ROUTES } from '@/shared/constants/routes'
+import {
+  EMPTY_TRANSLATABLE,
+  toTranslatable,
+  type Translatable,
+} from '@/shared/types/translatable'
 import { parseApiDate } from '@/shared/utils/format-date'
 
 /**
@@ -37,9 +43,11 @@ import { parseApiDate } from '@/shared/utils/format-date'
 export interface AssignmentFormValues {
   user_id: string | null
   room_id: string | null
-  /** Topshiriq biriktirish bilan birga yaratiladi — nomi bo'sh bo'lsa, u yo'q. */
-  task_name: string
-  task_description: string
+  /**
+   * Topshiriq biriktirish bilan birga yaratiladi. Shakli backend bilan bir
+   * xil (`task.name.uz`) — 422 xatolari maydonlarga to'g'ridan-to'g'ri tushadi.
+   */
+  task: { name: Translatable; description: Translatable }
   starts_at: Date | null
   ends_at: Date | null
   status: AssignmentStatus
@@ -50,11 +58,13 @@ export interface AssignmentFormHelpers {
   setErrors: (errors: Record<string, string>) => void
 }
 
+/** Tavsif ovozda o'qiladi — TTS'ning 4096 belgilik chegarasi tufayli 4000. */
+const DESCRIPTION_MAX = 4000
+
 const EMPTY: AssignmentFormValues = {
   user_id: null,
   room_id: null,
-  task_name: '',
-  task_description: '',
+  task: { name: EMPTY_TRANSLATABLE, description: EMPTY_TRANSLATABLE },
   starts_at: null,
   ends_at: null,
   status: 'active',
@@ -66,8 +76,11 @@ export const toFormValues = (assignment: Assignment): AssignmentFormValues => ({
   // qoladi va forma uni qayta tanlashni so'raydi.
   user_id: assignment.user ? String(assignment.user.id) : null,
   room_id: assignment.room ? String(assignment.room.id) : null,
-  task_name: assignment.task?.name ?? '',
-  task_description: assignment.task?.description ?? '',
+  // Javobdagi `name`/`description` — faqat tanlangan til; formaga ikkalasi kerak.
+  task: {
+    name: toTranslatable(assignment.task?.translations?.name),
+    description: toTranslatable(assignment.task?.translations?.description),
+  },
   starts_at: parseApiDate(assignment.starts_at),
   ends_at: parseApiDate(assignment.ends_at),
   status: assignment.status,
@@ -110,16 +123,23 @@ export const AssignmentForm = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialValues.starts_at])
 
+  const requiredName = (value: string) =>
+    value.trim() ? null : t('assignments.taskNameRequired')
+  const maxDescription = (value: string) =>
+    value.trim().length > DESCRIPTION_MAX
+      ? t('assignments.taskDescriptionMax', { max: DESCRIPTION_MAX })
+      : null
+
   const form = useForm<AssignmentFormValues>({
     initialValues,
     validate: {
       user_id: isNotEmpty(t('assignments.userRequired')),
       room_id: isNotEmpty(t('assignments.roomRequired')),
-      // Har bir biriktirishda vazifa bo'lishi shart: nomi ham, tavsifi ham.
-      task_name: (value) =>
-        value.trim() ? null : t('assignments.taskNameRequired'),
-      task_description: (value) =>
-        value.trim() ? null : t('assignments.taskDescriptionRequired'),
+      task: {
+        // Nom ikkala tilda majburiy, tavsif esa har bir tilda ixtiyoriy.
+        name: { uz: requiredName, qr: requiredName },
+        description: { uz: maxDescription, qr: maxDescription },
+      },
       starts_at: (value) => {
         if (!value) return t('assignments.startsRequired')
         if (value < minStart) return t('assignments.startsInFuture')
@@ -241,24 +261,29 @@ export const AssignmentForm = ({
           {/* Topshiriq biriktirish bilan birga yaratiladi — mavjudini ulash
               endi yo'q: umumiy topshiriqni o'chirish boshqalarnikini ham
               yo'q qilardi. */}
-          <Stack gap="md">
-            <TextInput
-              label={t('assignments.taskName')}
-              placeholder={t('assignments.taskNamePlaceholder')}
-              withAsterisk
-              {...form.getInputProps('task_name')}
-            />
+          <Grid gutter="md">
+            {LANGUAGES.map((language) => (
+              <Grid.Col key={language.code} span={{ base: 12, md: 6 }}>
+                <Stack gap="md">
+                  <TextInput
+                    label={`${t('assignments.taskName')} (${language.label})`}
+                    placeholder={t('assignments.taskNamePlaceholder')}
+                    withAsterisk
+                    {...form.getInputProps(`task.name.${language.code}`)}
+                  />
 
-            <Textarea
-              label={t('assignments.taskDescription')}
-              placeholder={t('assignments.taskDescriptionPlaceholder')}
-              withAsterisk
-              autosize
-              minRows={3}
-              maxRows={8}
-              {...form.getInputProps('task_description')}
-            />
-          </Stack>
+                  <Textarea
+                    label={`${t('assignments.taskDescription')} (${language.label})`}
+                    placeholder={t('assignments.taskDescriptionPlaceholder')}
+                    autosize
+                    minRows={3}
+                    maxRows={8}
+                    {...form.getInputProps(`task.description.${language.code}`)}
+                  />
+                </Stack>
+              </Grid.Col>
+            ))}
+          </Grid>
         </Card>
 
         <Group justify="flex-end" gap="sm">

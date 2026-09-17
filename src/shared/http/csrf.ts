@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+import { getLocale } from '@/shared/config/locale'
+
 import { CSRF_COOKIE_URL } from './api-config'
 
 /**
@@ -20,7 +22,10 @@ export const ensureCsrfCookie = (refresh = false): Promise<void> => {
 
   if (!request) {
     request = axios
-      .get(CSRF_COOKIE_URL, { withCredentials: true })
+      .get(CSRF_COOKIE_URL, {
+        withCredentials: true,
+        headers: { locale: getLocale() },
+      })
       .then(() => undefined)
       .catch((error: unknown) => {
         // Xato bo'lsa keshlamaymiz — keyingi urinish qaytadan so'raydi.

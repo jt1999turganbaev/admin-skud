@@ -1,4 +1,4 @@
-import type { Tone } from '@/shared/types'
+import type { NullableTranslatable, Tone, Translatable } from '@/shared/types'
 
 /**
  * AssignmentStatusEnum — faqat `active` biriktirish kirish huquqini beradi,
@@ -27,6 +27,8 @@ export interface AssignmentTask {
   id: number
   name: string
   description: string | null
+  /** Faqat show javobida — tahrirlash formasi uchun. */
+  translations?: { name: Translatable; description: NullableTranslatable }
 }
 
 /** AdminRoomUserAssignmentShowResource */
@@ -58,8 +60,10 @@ export interface AssignmentListItem {
  * ham yo'q qilardi". Topshiriq har bir biriktirishga tegishli.
  */
 export interface AssignmentTaskBody {
-  name: string
-  description: string | null
+  /** Ikkala tilda majburiy. */
+  name: Translatable
+  /** Har bir til ixtiyoriy, eng ko'pi 4000 belgi. */
+  description: NullableTranslatable
 }
 
 /** AdminRoomUserAssignmentCreateRequest */

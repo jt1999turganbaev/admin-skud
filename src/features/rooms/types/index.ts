@@ -1,4 +1,4 @@
-import type { Tone } from '@/shared/types'
+import type { Tone, Translatable } from '@/shared/types'
 
 export type RoomStatus = 'active' | 'inactive'
 
@@ -9,6 +9,8 @@ export interface Room {
   number: string
   status: RoomStatus
   terminals_count: number
+  /** Ikkala tildagi asl qiymat — tahrirlash formasi uchun. */
+  translations?: { name: Translatable }
   created_at: string | null
   updated_at: string | null
 }
@@ -22,7 +24,8 @@ export interface RoomListItem {
 
 /** AdminRoomCreateRequest */
 export interface RoomCreateBody {
-  name: string
+  /** Ikkala tilda majburiy. */
+  name: Translatable
   number: string
   status?: RoomStatus
 }

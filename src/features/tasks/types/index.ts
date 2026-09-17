@@ -1,4 +1,4 @@
-import type { Tone } from '@/shared/types'
+import type { NullableTranslatable, Tone, Translatable } from '@/shared/types'
 
 /** TaskStatusEnum — nofaol topshiriq yangi imtihonlarga biriktirilmaydi. */
 export type TaskStatus = 'active' | 'inactive'
@@ -9,6 +9,8 @@ export interface Task {
   name: string
   description: string | null
   status: TaskStatus
+  /** Ikkala tildagi asl qiymat — tahrirlash formasi uchun. */
+  translations?: { name: Translatable; description: NullableTranslatable }
   created_at: string | null
   updated_at: string | null
 }
@@ -22,8 +24,10 @@ export interface TaskListItem {
 
 /** AdminTaskCreateRequest */
 export interface TaskCreateBody {
-  name: string
-  description?: string | null
+  /** Ikkala tilda majburiy. */
+  name: Translatable
+  /** Har bir til ixtiyoriy, eng ko'pi 4000 belgi. */
+  description?: NullableTranslatable | null
   status?: TaskStatus
 }
 

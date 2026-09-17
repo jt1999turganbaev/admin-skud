@@ -51,7 +51,7 @@
     "retry": "Qayta urınıw",
     "notFound": "Maǵlıwmat tabılmadı.",
     "createdAt": "Qosılǵan",
-    "lastSeen": "Aqırǵı belsendilik",
+    "lastSeen": "Aqırǵı aktivlik",
     "deleteTitle": "Óshiriwdi tastıyıqlań",
     "deleteWarning": "óshiriledi. Bul háreketti biykar etip bolmaydı.",
     "done": "Orınlandı",
@@ -167,8 +167,8 @@
     "deviceIdRequired": "Qurılma identifikatorın kirgiziń"
   },
   "status": {
-    "active": "Belsendi",
-    "inactive": "Belsendi emes",
+    "active": "Aktiv",
+    "inactive": "Aktiv emes",
     "blocked": "Bloklanǵan"
   },
   "role": {
@@ -179,7 +179,7 @@
   "dashboard": {
     "identifications": "Búgingi identifikaciyalar",
     "unknownFaces": "Tánilmegen júzler",
-    "activeAssignments": "Belsendi biriktiriwler",
+    "activeAssignments": "Aktiv biriktiriwler",
     "onlineHint": "Onlayn / barlıǵı",
     "summaryHint": "Kórsetkishler {{date}} sánesi boyınsha ({{timezone}})",
     "roomsStatus": "Xanalar jaǵdayı",
@@ -189,7 +189,7 @@
     "notEntered": "Kelmegen",
     "missing": "Kelmegen",
     "lastEvent": "Aqırǵı waqıya",
-    "noActiveRooms": "Házirshe belsendi xana joq.",
+    "noActiveRooms": "Házirshe aktiv xana joq.",
     "noParticipants": "Bul xanada kútilip atırǵan hesh kim joq.",
     "roomCounters": "Kútilmekte: {{expected}} · Kirgen: {{entered}} · Kelmegen: {{missing}}",
     "terminalsHealth": "Terminallar jaǵdayı",
@@ -246,6 +246,7 @@
     "taskDescription": "Wazıypa xarakteristikası",
     "taskDescriptionPlaceholder": "Qısqasha xarakteristika",
     "taskDescriptionRequired": "Wazıypa xarakteristikasın kirgiziń",
+    "taskDescriptionMax": "Táriyp {{max}} belgiden aspawı kerek",
     "details": "Wazıypa tolıq maǵlıwmatları"
   },
   "imageCropper": {
